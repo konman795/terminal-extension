@@ -17,10 +17,26 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
+		vscode.window.showInformationMessage('Hello VS Code!');
 	});
 
-	context.subscriptions.push(disposable);
+	let warningMessage = vscode.commands.registerCommand('extension.warningMessage', () => {
+		// The code you place here will be executed every time your command is executed
+
+		// Display a message box to the user
+		vscode.window.showErrorMessage('Warning Test!');
+	});
+
+	let displayTime = vscode.commands.registerCommand('extension.displayTime', () => {
+		// The code you place here will be executed every time your command is executed
+		const today = new Date();
+		const currentTime = `${today.getHours()}:${today.getMinutes()}`;
+
+		// Display a message box to the user
+		vscode.window.showInformationMessage(currentTime);
+	});
+
+	context.subscriptions.push(disposable, displayTime, warningMessage);
 }
 
 // this method is called when your extension is deactivated
