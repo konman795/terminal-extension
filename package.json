@@ -10,24 +10,25 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.gulpWatch"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello Worlds"
-			},
-			{
-				"command": "extension.displayTime",
-				"title": "Display Time"
-			},
-			{
-				"command": "extension.warningMessage",
-				"title": "Display Warning"
+				"command": "extension.gulpWatch",
+				"title": "Gulp Watch This"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.gulpWatch",
+					"group": "RV"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
