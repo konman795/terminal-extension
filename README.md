@@ -1,10 +1,14 @@
-# helloworld README
+# RV Context Menu
 
-This extension will let us run gulp commands by right clicking and selecting the option from the context menu.
+This extension will let us run gulp commands by right clicking on the preamp asset folder.
 
 ## Features
 
-Remove need to type gulp watch --preamp --asset='{filepath}' whenever we want to watch a directory.
+Remove need to type:
+
+* gulp watch --preamp --asset='{filepath}' 
+
+whenever we want to watch a directory.
 
 ## Requirements
 
