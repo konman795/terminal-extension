@@ -3,7 +3,7 @@
 	"displayName": "RV Context Menu Commands",
 	"description": "Stop typing the same terminal commands over and over again!",
 	"publisher": "konkon-chao",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.33.0"
 	},
@@ -11,9 +11,9 @@
 		"Other"
 	],
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/konman795/terminal-extension.git"
-  },
+		"type": "git",
+		"url": "https://github.com/konman795/terminal-extension.git"
+	},
 	"icon": "images/logo.png",
 	"activationEvents": [
 		"onCommand:extension.gulpWatch",
