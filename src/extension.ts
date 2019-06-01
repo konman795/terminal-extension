@@ -1,45 +1,106 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+// the module 'vscode' contains the VS Code extensibility API
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+// this method is called when the extension is activated
 export function activate(context: vscode.ExtensionContext) {
-	let NEXT_TERM_ID = 1;
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-		console.log('Congratulations, your extension "helloworld" is now active!');
+  // gulp watch preamp command
+  let gulpCommand = vscode.commands.registerCommand(
+    'extension.gulpWatch',
+    (uri: vscode.Uri) => {
+      const relativePath = vscode.workspace.asRelativePath(uri, false);
+      const selectedFolderName = getSelectedFolderName(uri);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let gulpCommand = vscode.commands.registerCommand('extension.gulpWatch', (uri:vscode.Uri) => {
-		// The code you place here will be executed every time your command is executed
+      if (
+        relativePath
+          .toString()
+          .toLowerCase()
+          .includes('preamp')
+      ) {
+        vscode.window.showInformationMessage(
+          `Gulp watching '${selectedFolderName}'`
+        );
 
-		const relativePath = vscode.workspace.asRelativePath(uri, false);
-		const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
+        const terminal = vscode.window.createTerminal(
+          `gulp: ${selectedFolderName}`
+        );
+        terminal.show(true);
+        terminal.sendText(`gulp watch --preamp --asset='${relativePath}'`);
+      } else {
+        vscode.window.showErrorMessage(
+          `'${selectedFolderName}' is not a preamp asset!`
+        );
+      }
+    }
+  );
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage(`Watching ${workspaceFolder}`);
+  // deploy to staging command
+  let deployStagingCommand = vscode.commands.registerCommand(
+    'extension.deployStaging',
+    (uri: vscode.Uri) => {
+      const selectedFolderName = getSelectedFolderName(uri);
 
-		console.log(workspaceFolder);
-		console.log(uri);
+      vscode.window
+        .showWarningMessage(
+          `Deploy '${selectedFolderName}' to STAGING?`,
+          ...['Yes', 'No']
+        )
+        .then(selection => {
+          deployTerminalCommand(selectedFolderName, selection, 'uat');
+        });
+    }
+  );
 
-		const terminal = vscode.window.createTerminal(`Gulp Watch ${NEXT_TERM_ID}`);
-		terminal.show(true);
-		terminal.sendText(`gulp watch --preamp --asset='${relativePath}'`);
-		NEXT_TERM_ID++;
-	});
+  // deploy to production command
+  let deployProdCommand = vscode.commands.registerCommand(
+    'extension.deployProduction',
+    (uri: vscode.Uri) => {
+      const selectedFolderName = getSelectedFolderName(uri);
 
-	let deployStagingCommand = vscode.commands.registerCommand('extension.deployStaging', (uri: vscode.Uri) => {
-		vscode.window.showInformationMessage(`Deploy to staging?`);
-	});
+      vscode.window
+        .showWarningMessage(
+          `Deploy '${selectedFolderName}' to PRODUCTION?`,
+          ...['Yes', 'No']
+        )
+        .then(selection => {
+          deployTerminalCommand(selectedFolderName, selection, 'prod');
+        });
+    }
+  );
 
-	let deployProdCommand = vscode.commands.registerCommand('extension.deployProduction', (uri: vscode.Uri) => {
-		vscode.window.showInformationMessage(`Deploy to production?`);
-	});
+  context.subscriptions.push(
+    gulpCommand,
+    deployStagingCommand,
+    deployProdCommand
+  );
 
-	context.subscriptions.push(gulpCommand, deployStagingCommand, deployProdCommand);
+  function deployTerminalCommand(
+    selectedFolderName: string = '',
+    selection: string = 'no',
+    environment: string = ''
+  ): void {
+    if (selection.toLowerCase() === 'yes') {
+			vscode.window.showInformationMessage(`Deploying '${selectedFolderName}' to ${environment} !`);
+
+      const terminal = vscode.window.createTerminal(
+        `deploy - ${environment}:${selectedFolderName}`
+      );
+      terminal.show(true);
+      terminal.sendText(
+        `echo 'running deploy command for ${environment}:${selectedFolderName}'`
+      );
+    } else {
+      vscode.window.showInformationMessage(`Deploy cancelled!`);
+    }
+  }
+
+  function getSelectedFolderName(uri: vscode.Uri): string {
+    const selectedFolderName = vscode.workspace
+      .asRelativePath(uri, false)
+      .split('/')
+      .pop();
+    return selectedFolderName ? selectedFolderName : '';
+  }
 }
-// this method is called when your extension is deactivated
+
+// this method is called when the extension is deactivated. usually used for freeing up resources.
 export function deactivate() {}
