@@ -1,6 +1,6 @@
 # RV Context Menu Commands
 
-This extension will let us run gulp commands by right clicking on the preamp asset folder.
+This extension will let us run commanly used terminal commands by right clicking on the preamp asset folder.
 
 ## Features
 
@@ -11,7 +11,7 @@ This extension will let us run gulp commands by right clicking on the preamp ass
 
 None
 
-## Extension Settings
+## Additional Info
 
 `contributes.configuration` will be supported in future releases.
 
