@@ -1,7 +1,8 @@
 {
-	"name": "helloworld",
-	"displayName": "HelloWorld",
-	"description": "",
+	"name": "rv-context-menu-commands",
+	"displayName": "RV Context Menu Commands",
+	"description": "Stop typing the same terminal commands over and over again!",
+	"publisher": "KonKonChao",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.33.0"
@@ -10,7 +11,9 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.gulpWatch"
+		"onCommand:extension.gulpWatch",
+		"onCommand:extension.deployStaging",
+		"onCommand:extension.deployProduction"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +21,14 @@
 			{
 				"command": "extension.gulpWatch",
 				"title": "Gulp Watch This"
+			},
+			{
+				"command": "extension.deployStaging",
+				"title": "Deploy to Staging"
+			},
+			{
+				"command": "extension.deployProduction",
+				"title": "Deploy to Production"
 			}
 		],
 		"menus": {
@@ -25,7 +36,17 @@
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "extension.gulpWatch",
-					"group": "RV"
+					"group": "RedVentures@1"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.deployStaging",
+					"group": "RedVentures@2"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.deployProduction",
+					"group": "RedVentures@3"
 				}
 			]
 		}
