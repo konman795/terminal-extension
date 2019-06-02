@@ -86,7 +86,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
       terminal.show(true);
       terminal.sendText(
-        `echo 'running deploy command for ${environment}:${selectedFolderName}'`
+        `npm run deploy:${environment}:${selectedFolderName}`
       );
     } else {
       vscode.window.showInformationMessage(`Deploy cancelled!`);
