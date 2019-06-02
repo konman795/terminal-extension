@@ -1,6 +1,6 @@
 # RV Context Menu Commands
 
-This extension will let us run commonly used terminal commands by right clicking on the preamp asset folder.
+This extension will let us run commonly used terminal commands by right clicking on the folder.
 
 ## Features
 
