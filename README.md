@@ -1,4 +1,4 @@
-# RV Context Menu Commands
+# Context Menu Commands
 
 This extension will let us run commonly used terminal commands from the explorer context menu.
 
