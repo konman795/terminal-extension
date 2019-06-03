@@ -1,9 +1,9 @@
 {
-	"name": "rv-context-menu-commands",
-	"displayName": "RV Context Menu Commands",
+	"name": "context-menu-commands",
+	"displayName": "Context Menu Commands",
 	"description": "Stop typing the same terminal commands over and over again!",
 	"publisher": "konkon-chao",
-	"version": "1.1.1",
+	"version": "1.1.5",
 	"engines": {
 		"vscode": "^1.33.0"
 	},

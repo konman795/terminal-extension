@@ -18,7 +18,7 @@ You need to be using correct version of node supported by the project. For now, 
 
 Node version handling will be added later.
 
-And for now... be on the right team at RV :)
+And for now... be on the right team at the right company :)
 
 ---
 
