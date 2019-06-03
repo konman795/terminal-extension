@@ -21,7 +21,8 @@
 		"onCommand:extension.deployStaging",
 		"onCommand:extension.deployProduction",
 		"onCommand:extension.startNodeProduction",
-		"onCommand:extension.startNodeDevelopment"
+		"onCommand:extension.startNodeDevelopment",
+		"onCommand:extension.runCart"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -45,6 +46,10 @@
 			{
 				"command": "extension.startNodeProduction",
 				"title": "Run Node: Production"
+			},
+			{
+				"command": "extension.runCart",
+				"title": "Run Cart"
 			}
 		],
 		"menus": {
@@ -68,53 +73,72 @@
 				{
 					"command": "extension.startNodeDevelopment",
 					"when": "false"
+				},
+				{
+					"command": "extension.runCart",
+					"when": "false"
 				}
 			],
 			"explorer/context": [
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "extension.gulpWatch",
-					"group": "RedVentures@1"
+					"group": "GulpWatchCommand@1"
+				},
+				{
+					"when": "explorerResourceIsFolder && resourceFilename == control",
+					"command": "extension.runCart",
+					"group": "CustomCommands@2"
+				},
+				{
+					"when": "explorerResourceIsFolder && resourceFilename == test",
+					"command": "extension.runCart",
+					"group": "CustomCommands@2"
+				},
+				{
+					"when": "explorerResourceIsFolder && resourceFilename == test2",
+					"command": "extension.runCart",
+					"group": "CustomCommands@2"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == control",
 					"command": "extension.deployStaging",
-					"group": "RedVentures@2"
+					"group": "CustomCommands@3"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == test",
 					"command": "extension.deployStaging",
-					"group": "RedVentures@2"
+					"group": "CustomCommands@3"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == test2",
 					"command": "extension.deployStaging",
-					"group": "RedVentures@2"
+					"group": "CustomCommands@3"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == control",
 					"command": "extension.deployProduction",
-					"group": "RedVentures@3"
+					"group": "CustomCommands@4"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == test",
 					"command": "extension.deployProduction",
-					"group": "RedVentures@3"
+					"group": "CustomCommands@4"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == test2",
 					"command": "extension.deployProduction",
-					"group": "RedVentures@3"
+					"group": "CustomCommands@4"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == checkout.node",
 					"command": "extension.startNodeProduction",
-					"group": "RedVentures@4"
+					"group": "CustomCommands@5"
 				},
 				{
 					"when": "explorerResourceIsFolder && resourceFilename == checkout.node",
 					"command": "extension.startNodeDevelopment",
-					"group": "RedVentures@4"
+					"group": "CustomCommands@5"
 				}
 			]
 		}

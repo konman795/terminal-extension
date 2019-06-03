@@ -7,14 +7,17 @@ This extension will let us run commonly used terminal commands from the explorer
 - Removes the need to type: gulp watch --preamp --asset='{filepath}' to watch directories.
 - Deploy to staging and production from context menu.
 - Start development or production node server from context menu.
+- Run cart from context menu.
 
 ## Requirements
 
-You need to be using correct version of node supported by the project. For now, if you need to set a default node version for a specific project, you can run this command:
+If you need to set a default node version use this command:
 
 `> nvm alias default {node version}`
 
-Node version handling will be added later.
+If you get an error related to the **node-sass** package, run this command:
+
+`> npm rebuild node-sass`
 
 And for now... be on the right team at the right company :)
 
@@ -97,6 +100,12 @@ Runs the npm script in the terminal to start the node production server.
 - Spin up cart from context menu.
 
 ## Release Notes
+
+### 1.2.0
+
+#### Added
+
+- Run cart command added.
 
 ### 1.1.2
 

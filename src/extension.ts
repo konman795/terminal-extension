@@ -95,6 +95,11 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let runCart = vscode.commands.registerCommand('extension.runCart', (uri: vscode.Uri) => {
+    const selectedFolderName = getSelectedFolderName(uri);
+    runCartTerminalCommand(selectedFolderName);
+  });
+
   context.subscriptions.push(
     gulpCommand,
     deployStagingCommand,
@@ -117,7 +122,7 @@ export function activate(context: vscode.ExtensionContext) {
   ): void {
     if (selection.toLowerCase() === 'yes') {
       vscode.window.showInformationMessage(
-        `Deploying '${selectedFolderName}' to ${environment} !`
+        `Deploying '${selectedFolderName}' to ${environment}!`
       );
 
       const terminal = vscode.window.createTerminal(
@@ -129,6 +134,25 @@ export function activate(context: vscode.ExtensionContext) {
     } else {
       vscode.window.showInformationMessage(`Deploy cancelled!`);
     }
+  }
+
+  /**
+   * Opens a new terminal instance and runs the dev npm script.
+   *
+   * @param selectedFolderName The selected folder name.
+   * @return void
+   */
+  function runCartTerminalCommand(selectedFolderName: string = ''):void {
+    vscode.window.showInformationMessage(
+      `Running ${selectedFolderName} cart!`
+    );
+
+    const terminal = vscode.window.createTerminal(
+      `${selectedFolderName} cart`
+    );
+    terminal.show(true);
+    terminal.sendText(`cd ~/www/src/chec/checkout.core/v2`);
+    terminal.sendText(`npm run dev:${selectedFolderName}`);
   }
 
   /**
