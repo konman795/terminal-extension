@@ -39,12 +39,12 @@
 				"title": "Deploy to Production"
 			},
 			{
-				"command": "extension.startNodeProduction",
-				"title": "Run Node: Production"
-			},
-			{
 				"command": "extension.startNodeDevelopment",
 				"title": "Run Node: Development"
+			},
+			{
+				"command": "extension.startNodeProduction",
+				"title": "Run Node: Production"
 			}
 		],
 		"menus": {

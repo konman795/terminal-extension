@@ -97,6 +97,13 @@ export function activate(context: vscode.ExtensionContext) {
     startNodeProduction
   );
 
+  /**
+   * Opens a new terminal instance and runs the deploy npm script.
+   *
+   * @param selectedFolderName The selected folder name.
+   * @param selection Selected answer from confirmation dialog.
+   * @return void
+   */
   function deployTerminalCommand(
     selectedFolderName: string = '',
     selection: string = 'no',
@@ -117,6 +124,12 @@ export function activate(context: vscode.ExtensionContext) {
     }
   }
 
+  /**
+   * Parses out folder name from a folder path
+   *
+   * @param uri The vscode uri
+   * @return A string which is the foldername
+   */
   function getSelectedFolderName(uri: vscode.Uri): string {
     const selectedFolderName = vscode.workspace
       .asRelativePath(uri, false)
