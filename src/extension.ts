@@ -36,10 +36,13 @@ export function activate(context: vscode.ExtensionContext) {
   // start development node server
   let startNodeDevelopment = vscode.commands.registerCommand(
     'extension.startNodeDevelopment',
-    () => {
+    (uri: vscode.Uri) => {
+      const relativePath = vscode.workspace.asRelativePath(uri);
+
       vscode.window.showInformationMessage(`Starting Node: Development`);
-      const terminal = vscode.window.createTerminal(`Node: Development`);
+      const terminal = vscode.window.createTerminal(`node: development`);
       terminal.show(true);
+      terminal.sendText(`cd ~/www/src/chec/checkout.node`);
       terminal.sendText(`npm run dev`);
     }
   );
@@ -47,10 +50,13 @@ export function activate(context: vscode.ExtensionContext) {
   // start production node server
   let startNodeProduction = vscode.commands.registerCommand(
     'extension.startNodeProduction',
-    () => {
+    (uri: vscode.Uri) => {
+      const relativePath = vscode.workspace.asRelativePath(uri);
+
       vscode.window.showInformationMessage(`Starting Node: Production`);
-      const terminal = vscode.window.createTerminal(`Node: Production`);
+      const terminal = vscode.window.createTerminal(`node: production`);
       terminal.show(true);
+      terminal.sendText(`cd ~/www/src/chec/checkout.node`);
       terminal.sendText(`npm run prod`);
     }
   );
@@ -118,6 +124,7 @@ export function activate(context: vscode.ExtensionContext) {
         `deploy - ${environment}:${selectedFolderName}`
       );
       terminal.show(true);
+      terminal.sendText(`cd ~/www/src/chec/checkout.core/v2`);
       terminal.sendText(`npm run deploy:${environment}:${selectedFolderName}`);
     } else {
       vscode.window.showInformationMessage(`Deploy cancelled!`);
