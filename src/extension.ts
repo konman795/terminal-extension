@@ -33,6 +33,28 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // start development node server
+  let startNodeDevelopment = vscode.commands.registerCommand(
+    'extension.startNodeDevelopment',
+    () => {
+      vscode.window.showInformationMessage(`Starting Node: Development`);
+      const terminal = vscode.window.createTerminal(`Node: Development`);
+      terminal.show(true);
+      terminal.sendText(`npm run dev`);
+    }
+  );
+
+  // start production node server
+  let startNodeProduction = vscode.commands.registerCommand(
+    'extension.startNodeProduction',
+    () => {
+      vscode.window.showInformationMessage(`Starting Node: Production`);
+      const terminal = vscode.window.createTerminal(`Node: Production`);
+      terminal.show(true);
+      terminal.sendText(`npm run prod`);
+    }
+  );
+
   // deploy to staging command
   let deployStagingCommand = vscode.commands.registerCommand(
     'extension.deployStaging',
@@ -70,7 +92,9 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     gulpCommand,
     deployStagingCommand,
-    deployProdCommand
+    deployProdCommand,
+    startNodeDevelopment,
+    startNodeProduction
   );
 
   function deployTerminalCommand(
@@ -79,15 +103,15 @@ export function activate(context: vscode.ExtensionContext) {
     environment: string = ''
   ): void {
     if (selection.toLowerCase() === 'yes') {
-			vscode.window.showInformationMessage(`Deploying '${selectedFolderName}' to ${environment} !`);
+      vscode.window.showInformationMessage(
+        `Deploying '${selectedFolderName}' to ${environment} !`
+      );
 
       const terminal = vscode.window.createTerminal(
         `deploy - ${environment}:${selectedFolderName}`
       );
       terminal.show(true);
-      terminal.sendText(
-        `npm run deploy:${environment}:${selectedFolderName}`
-      );
+      terminal.sendText(`npm run deploy:${environment}:${selectedFolderName}`);
     } else {
       vscode.window.showInformationMessage(`Deploy cancelled!`);
     }

@@ -21,6 +21,10 @@ None yet
 
 ## Release Notes
 
+### 1.0.2
+
+Updating changelog and readme.
+
 ### 1.0.0
 
 Initial release!

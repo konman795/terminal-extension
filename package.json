@@ -19,7 +19,9 @@
 	"activationEvents": [
 		"onCommand:extension.gulpWatch",
 		"onCommand:extension.deployStaging",
-		"onCommand:extension.deployProduction"
+		"onCommand:extension.deployProduction",
+		"onCommand:extension.startNodeProduction",
+		"onCommand:extension.startNodeDevelopment"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -35,9 +37,39 @@
 			{
 				"command": "extension.deployProduction",
 				"title": "Deploy to Production"
+			},
+			{
+				"command": "extension.startNodeProduction",
+				"title": "Run Node: Production"
+			},
+			{
+				"command": "extension.startNodeDevelopment",
+				"title": "Run Node: Development"
 			}
 		],
 		"menus": {
+			"commandPalette": [
+				{
+					"command": "extension.gulpWatch",
+					"when": "false"
+				},
+				{
+					"command": "extension.deployStaging",
+					"when": "false"
+				},
+				{
+					"command": "extension.deployProduction",
+					"when": "false"
+				},
+				{
+					"command": "extension.startNodeProduction",
+					"when": "false"
+				},
+				{
+					"command": "extension.startNodeDevelopment",
+					"when": "false"
+				}
+			],
 			"explorer/context": [
 				{
 					"when": "explorerResourceIsFolder",
@@ -73,6 +105,16 @@
 					"when": "explorerResourceIsFolder && resourceFilename == test2",
 					"command": "extension.deployProduction",
 					"group": "RedVentures@3"
+				},
+				{
+					"when": "explorerResourceIsFolder && resourceFilename == checkout.node",
+					"command": "extension.startNodeProduction",
+					"group": "RedVentures@4"
+				},
+				{
+					"when": "explorerResourceIsFolder && resourceFilename == checkout.node",
+					"command": "extension.startNodeDevelopment",
+					"group": "RedVentures@4"
 				}
 			]
 		}
