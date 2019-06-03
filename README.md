@@ -8,8 +8,6 @@ This extension will let us run commonly used terminal commands from the explorer
 - Deploy to staging and production from context menu.
 - Start development or production node server from context menu.
 
----
-
 ## Requirements
 
 You need to be using correct version of node supported by the project. For now, if you need to set a default node version for a specific project, you can run this command:
@@ -19,8 +17,6 @@ You need to be using correct version of node supported by the project. For now, 
 Node version handling will be added later.
 
 And for now... be on the right team at the right company :)
-
----
 
 ## How to Use
 
@@ -88,8 +84,6 @@ Runs the npm script in the terminal to start the node production server.
 
 `> npm run prod`
 
----
-
 ## Known Issues
 
 - No node version checking before running commands related to npm.
@@ -97,14 +91,10 @@ Runs the npm script in the terminal to start the node production server.
 - Deploy to staging or production command only checks for folder name. Need to implement deeper checks.
 - No checks to see if duplicate scripts are currently active. Will implement check and handlers to handle those situations.
 
----
-
 ## Future Plans
 
 - `contributes.configuration` will be supported in future releases. This will give us the ability to add custom commands, command groups and logic checking.
 - Spin up cart from context menu.
-
----
 
 ## Release Notes
 
